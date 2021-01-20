@@ -16,6 +16,7 @@ describe 'Flights Index Page' do
     @p6 = Passenger.create!(name: 'Passenger 6', age: 27)
     @p7 = Passenger.create!(name: 'Passenger 7', age: 18)
     @p8 = Passenger.create!(name: 'Passenger 8', age: 39)
+    @p9 = Passenger.create!(name: 'Passenger 9', age: 13)
 
     PassengerFlight.create!(flight_id: @f1.id, passenger_id: @p1.id)
     PassengerFlight.create!(flight_id: @f1.id, passenger_id: @p2.id)
@@ -24,6 +25,7 @@ describe 'Flights Index Page' do
     PassengerFlight.create!(flight_id: @f3.id, passenger_id: @p5.id)
     PassengerFlight.create!(flight_id: @f3.id, passenger_id: @p6.id)
     PassengerFlight.create!(flight_id: @f3.id, passenger_id: @p7.id)
+    PassengerFlight.create!(flight_id: @f3.id, passenger_id: @p9.id)
     visit flights_path
   end
 
@@ -43,12 +45,13 @@ describe 'Flights Index Page' do
     expect(page).to have_content(@p5.name)
     expect(page).to have_content(@p6.name)
     expect(page).to have_content(@p7.name)
+    expect(page).to have_content(@p9.name)
 
     expect(page).to_not have_content(@p8.name)
   end
 
   it 'should have flights ordered by how many passengers are on a flight' do
-    expect(@f3.flight_number).to appear_before(@f1.flight_number)
+    expect("Flight Number: #{@f3.flight_number}").to appear_before("Flight Number: #{@f1.flight_number}")
   end
 
   it 'should have a link to delete passenger from flight' do
