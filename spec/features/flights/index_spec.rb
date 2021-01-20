@@ -46,4 +46,12 @@ describe 'Flights Index Page' do
 
     expect(page).to_not have_content(@p8.name)
   end
+
+  it 'should have a link to delete passenger from flight' do
+    expect(page).to have_link("Delete #{@p7.name} From Flight")
+    click_link "Delete #{@p7.name} From Flight"
+
+    expect(current_path).to eq(flights_path)
+    expect(page).to_not have_content(@p7.name)
+  end
 end

@@ -5,7 +5,9 @@
     <h4>Flight Number: <%= f.flight_number %></h4>
     <strong>All Passengers On Board Flight:</strong>
     <% f.passengers.each do |p| %>
-     <%= p.name %>
+    
+        <%= p.name %><%= link_to "Delete #{p.name} From Flight", flight_passenger_path(f, p), method: :delete %>
+      
     <% end %>
   <% end %>
 </ul>
