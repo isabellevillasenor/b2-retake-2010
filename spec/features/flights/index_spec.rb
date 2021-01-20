@@ -47,6 +47,10 @@ describe 'Flights Index Page' do
     expect(page).to_not have_content(@p8.name)
   end
 
+  it 'should have flights ordered by how many passengers are on a flight' do
+    expect(@f3.flight_number).to appear_before(@f1.flight_number)
+  end
+
   it 'should have a link to delete passenger from flight' do
     expect(page).to have_link("Delete #{@p7.name} From Flight")
     click_link "Delete #{@p7.name} From Flight"
