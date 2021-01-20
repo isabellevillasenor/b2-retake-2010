@@ -1,0 +1,11 @@
+<h2>All Flights with List of Passengers</h2>
+
+<ul>
+  <% @flights.each do |f| %>
+    <h4>Flight Number: <%= f.flight_number %></h4>
+    <strong>All Passengers On Board Flight:</strong>
+    <% f.passengers.each do |p| %>
+     <%= p.name %>
+    <% end %>
+  <% end %>
+</ul>
